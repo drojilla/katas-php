@@ -74,3 +74,10 @@ You can take advantages of the following 2 collaborators of the coffee machine:
 
 1. `EmailNotifier` which has a `notifyMissingDrink(drink)` method.
 2. `BeverageQuantityChecker`  which has an `isEmpty(drink)` method.
+
+ ## Commands To Run docker 
+ 
+ **make install** =>    runs container and install composer dependencies. (the docker container is removed when install finish)
+ 
+ **make tests** =>      runs a docker container and executes phpunit tests in /tests folder. (the docker container is auto removed when tests finishs)
+ 
