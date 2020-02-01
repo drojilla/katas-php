@@ -19,7 +19,7 @@ class BeveragesPricingTest extends TestCase
         $this->assertEquals(1.20, $coffee->price());
     }
 
-    public function testComputes_tea_price()
+    public function testComputesTeaPrice()
     {
         $tea = new Tea();
         $this->assertEquals(1.50, $tea->price());
