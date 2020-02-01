@@ -1,5 +1,6 @@
 .idea
 .DS_Store
 /vendor
+*/vendor/
 *.cache
 composer.lock
