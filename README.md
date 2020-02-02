@@ -15,4 +15,5 @@ Refactoring kata to start practicing with test doubles (spies and stubs).
 ## [Coffee Machine](coffee-machine/)
 Good kata to learn Outside-in TDD with test doubles
 
-
+## [Beverage Prices refactoring](refactoring-awful-inheritance-use-with-beverage-prices/)
+Refactoring away from an awful usage of inheritance
