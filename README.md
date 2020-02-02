@@ -35,7 +35,9 @@ In order to use these Katas boilerplate you need to have installed Docker.
 
 To get started you should clone this repo.
 
-Then got to the kata's folder you want to practice ( repeats this operation for any kata you like to practice ). 
+Then got to the kata's folder you want to practice ( for example fizz-buzz kata).
+
+Repeats this operation for any kata you like to practice. 
 
 Uses **make install** for install composer dependencies.
 
