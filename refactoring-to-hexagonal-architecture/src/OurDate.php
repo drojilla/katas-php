@@ -13,10 +13,10 @@ class OurDate
 
     private DateTime $date;
 
-    public function __construct($yyyyMMdd)
+    public function __construct(String $yyyyMMdd)
     {
 //        try{
-        $this->date = DateTime::createFromFormat('yyyy/MM/dd', $yyyyMMdd);
+        $this->date = DateTime::createFromFormat('Y/m/d', $yyyyMMdd);
 //        }catch (){
 //            throws ParseException
 //        }
@@ -39,12 +39,12 @@ class OurDate
             && $anotherDate->getMonth() === $this->getMonth();
     }
 
-    public function equals(?OurDate $ourDate): bool
+    public function equals($ourDate): bool
     {
-        if (!($ourDate instanceof self)) {
+        if (!($ourDate instanceof OurDate)) {
             return false;
         }
 
-        return $ourDate->date === $this->date;
+        return $ourDate->date == $this->date;
     }
 }
