@@ -23,3 +23,34 @@ Refactoring to Hexagonal Architecture
 
 ## [Birthday Greetings 2](refactoring-to-hexagonal-architecture-2/)
 Refactoring to Hexagonal Architecture 2
+
+
+## How to get started
+
+### Requirements
+
+In order to use these Katas boilerplate you need to have installed Docker.
+
+### Run it
+
+To get started you should clone this repo.
+
+Then got to the kata's folder you want to practice ( repeats this operation for any kata you like to practice ). 
+
+Uses **make install** for install composer dependencies.
+
+```
+git https://github.com/drojilla/katas-php.git
+cd katas-php/fizz-buzz/
+make install
+```
+
+Repeat this actions for any kata you like practice.
+
+To check that all the tests are passing just execute:
+
+```
+make tests 
+```
+
+The docker's image used contains xdebug for  debbug code. Uses port 9000.

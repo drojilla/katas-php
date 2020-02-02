@@ -38,10 +38,3 @@ You'll find the initial code for this kata in this repository.
 Good luck and beware the goblin!
 
 *Adapted from the [Brownish Greenfield Gilded Rose Kata](https://alvarogarcia7.github.io/blog/2016/04/18/brownish-greenfield-gilded-rose-kata-formulation/)
-
- ## Commands To Run docker 
- 
- **make install** =>    runs container and install composer dependencies. (the docker container is removed when install finish)
- 
- **make tests** =>      runs a docker container and executes phpunit tests in /tests folder. (the docker container is auto removed when tests finishs)
- 
