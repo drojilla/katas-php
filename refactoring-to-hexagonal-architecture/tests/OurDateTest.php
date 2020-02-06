@@ -33,10 +33,15 @@ class OurDateTest extends TestCase
         $same = new OurDate("2000/01/02");
         $different = new OurDate("2000/01/04");
 
-        $this->assertFalse($base->equals(null));
-        $this->assertFalse($base->equals(''));
         $this->assertTrue($base->equals($base));
         $this->assertTrue($base->equals($same));
         $this->assertFalse($base->equals($different));
+    }
+
+    public function testExceptionInCreationObject()
+    {
+        $this->expectException("TypeError");
+        $invalidDate = new OurDate("");
+        $anotherInvalidDate = new OurDate();
     }
 }

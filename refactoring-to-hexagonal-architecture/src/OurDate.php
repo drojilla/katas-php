@@ -18,7 +18,7 @@ class OurDate
         try {
             $this->date = DateTime::createFromFormat('Y/m/d H:i:s', $yyyyMMdd . ' 00:00:00');
         } catch (\Exception $e) {
-            throw new \Exception('ParseException');
+            throw new \TypeError('ParseException');
         }
     }
 
@@ -39,7 +39,7 @@ class OurDate
             && $anotherDate->getMonth() === $this->getMonth();
     }
 
-    public function equals(?OurDate $ourDate): bool
+    public function equals(OurDate $ourDate): bool
     {
         if (!($ourDate instanceof OurDate)) {
             return false;
