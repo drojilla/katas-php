@@ -6,9 +6,6 @@ declare(strict_types=1);
 namespace App;
 
 
-use ArgumentCountError;
-use Throwable;
-
 class Employee
 {
     private OurDate $birthDate;
@@ -23,8 +20,8 @@ class Employee
             $this->lastName = $lastName;
             $this->birthDate = new OurDate($birthDate);
             $this->email = $email;
-        } catch (Throwable $e) {
-            throw new ArgumentCountError('Invalids arguments');
+        } catch (\Throwable $e) {
+            throw new \ArgumentCountError('Invalids arguments');
         }
 
     }

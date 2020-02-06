@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-
-namespace App;
-
-
+use App\Employee;
 use PHPUnit\Framework\TestCase;
 
 class EmployeeTest extends TestCase
