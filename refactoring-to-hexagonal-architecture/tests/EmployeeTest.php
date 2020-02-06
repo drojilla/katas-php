@@ -15,14 +15,19 @@ class EmployeeTest extends TestCase
         $this->assertFalse($employee->isBirthday(new OurDate("2008/01/30")), "not his birthday");
         $this->assertTrue($employee->isBirthday(new OurDate("2008/01/31")), "his birthday");
     }
-    
+
+    public function testExceptionInCreationObject()
+    {
+        $this->expectException(\ArgumentCountError::class);
+        $invalidDate = new Employee("");
+        $anotherInvalidDate = new Employee();
+    }
+
     public function testEquality(){
         $base = new Employee("First", "Last", "1999/09/01", "first@last.com");
         $same = new Employee("First", "Last", "1999/09/01", "first@last.com");
         $different = new Employee("First", "Last", "1999/09/01", "boom@boom.com");
 
-//        $this->assertFalse($base->equals(null));
-//        $this->assertFalse($base->equals(""));
         $this->assertTrue($base->equals($same));
         $this->assertFalse($base->equals($different));
     }
