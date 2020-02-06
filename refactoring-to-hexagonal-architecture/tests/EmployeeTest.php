@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Employee;
+use App\OurDate;
 use PHPUnit\Framework\TestCase;
 
 class EmployeeTest extends TestCase
