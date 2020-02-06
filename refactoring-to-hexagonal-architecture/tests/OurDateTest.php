@@ -40,7 +40,7 @@ class OurDateTest extends TestCase
 
     public function testExceptionInCreationObject()
     {
-        $this->expectException("TypeError");
+        $this->expectException(InvalidArgumentException::class);
         $invalidDate = new OurDate("");
         $anotherInvalidDate = new OurDate();
     }

@@ -13,12 +13,12 @@ class OurDate
 
     private DateTime $date;
 
-    public function __construct(String $yyyyMMdd)
+    public function __construct(string $yyyyMMdd)
     {
         try {
             $this->date = DateTime::createFromFormat('Y/m/d H:i:s', $yyyyMMdd . ' 00:00:00');
-        } catch (\Exception $e) {
-            throw new \TypeError('ParseException');
+        } catch (\Throwable $e) {
+            throw new \InvalidArgumentException('ParseException');
         }
     }
 
