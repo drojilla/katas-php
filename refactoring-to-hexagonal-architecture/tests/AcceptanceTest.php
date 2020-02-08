@@ -25,8 +25,8 @@ class AcceptanceTest extends TestCase
             "localhost",
             self::SMTP_PORT);
         $this->assertEquals(
-            $messagesSent->size(),
             0,
+            $messagesSent->size(),
             "what? messages?");
     }
 

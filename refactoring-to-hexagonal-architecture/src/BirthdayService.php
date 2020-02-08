@@ -6,6 +6,10 @@ declare(strict_types=1);
 namespace App;
 
 
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
+
 class BirthdayService
 {
     public function sendGreetings(
@@ -38,20 +42,19 @@ class BirthdayService
         string $recipient
     ): void
     {
-
-//        // Create a mailer
-//        $mailer = new Swift_Mailer(
-//            new Swift_SmtpTransport($smtpHost, $smtpPort)
-//        );
-//        // Construct the message
-//        $msg = new Swift_Message($subject);
-//        $msg
-//            ->setFrom($sender)
-//            ->setTo([$recipient])
-//            ->setBody($body)
-//        ;
-//        // Send the message
-//        $mailer->send($msg);
+        // Create a mailer
+        $mailer = new Swift_Mailer(
+            new Swift_SmtpTransport($smtpHost, $smtpPort)
+        );
+        // Construct the message
+        $msg = new Swift_Message($subject);
+        $msg
+            ->setFrom($sender)
+            ->setTo([$recipient])
+            ->setBody($body)
+        ;
+        // Send the message
+        $mailer->send($msg);
     }
 
 }
