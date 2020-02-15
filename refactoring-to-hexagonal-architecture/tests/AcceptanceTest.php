@@ -9,25 +9,56 @@ use PHPUnit\Framework\TestCase;
 
 class AcceptanceTest extends TestCase
 {
-    const SMTP_PORT = 25;
+    private const SMTP_HOST = '127.0.0.1';
+    private const SMTP_PORT = 25;
+
     private $service;
 
-    public function setUp(): void
+    protected function setUpt(): void
     {
-        $this->service = new BirthdayService();
+        $this->service = $this->createMock(BirthdayService::class);
+        $this->service
+            ->expects($this->any())
+            ->method('sendMessage')
+            ->willReturn(null);
     }
 
-    public function testWillNotSendEmailsWhenNobodysBirthday()
+    private function messagesSent(array $response): array
+    {
+        return $response;
+    }
+
+    public function testWillSendGreetings_whenItsSomebodysBirthday(): void
     {
         $this->service->sendGreetings(
-            dirname(__FILE__) . "/resources/employee_data.txt",
-            new OurDate("2008/01/01"),
-            "localhost",
-            self::SMTP_PORT);
-        $this->assertEquals(
-            0,
-            $messagesSent->size(),
-            "what? messages?");
+            dirname(__FILE__) . '/resources/employee_data.txt',
+            new OurDate('2008/10/08'),
+            static::SMTP_HOST,
+            static::SMTP_PORT
+        );
+
+        $response = [
+
+        ];
+        $messages = $this->messagesSent($response);
+        $this->assertCount(1, $messages, 'message not sent?');
+
+        $message = $messages[0];
+        $this->assertEquals('Happy Birthday, dear John!', $message['Content']['Body']);
+        $this->assertEquals('Happy Birthday!', $message['Content']['Headers']['Subject'][0]);
+        $this->assertCount(1, $message['Content']['Headers']['To']);
+        $this->assertEquals('john.doe@foobar.com', $message['Content']['Headers']['To'][0]);
     }
 
+    public function testWillNotSendEmailsWhenNobodysBirthday(): void
+    {
+        $this->service->sendGreetings(
+            dirname(__FILE__) . '/resources/employee_data.txt',
+            new OurDate('2008/01/01'),
+            static::SMTP_HOST,
+            static::SMTP_PORT
+        );
+
+        $this->assertCount(0, $this->messagesSent([]), 'what? messages?');
+    }
 }

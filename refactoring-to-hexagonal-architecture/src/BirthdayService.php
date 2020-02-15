@@ -42,18 +42,15 @@ class BirthdayService
         string $recipient
     ): void
     {
-        // Create a mailer
         $mailer = new Swift_Mailer(
             new Swift_SmtpTransport($smtpHost, $smtpPort)
         );
-        // Construct the message
         $msg = new Swift_Message($subject);
         $msg
             ->setFrom($sender)
             ->setTo([$recipient])
             ->setBody($body)
         ;
-        // Send the message
         $mailer->send($msg);
     }
 
