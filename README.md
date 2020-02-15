@@ -21,9 +21,6 @@ Refactoring away from an awful usage of inheritance
 ## [Birthday Greetings](refactoring-to-hexagonal-architecture/)
 Refactoring to Hexagonal Architecture
 
-## [Birthday Greetings 2](refactoring-to-hexagonal-architecture-2/)
-Refactoring to Hexagonal Architecture 2
-
 
 ## How to get started
 
