@@ -51,9 +51,9 @@ class AcceptanceTest extends TestCase
             static::SMTP_PORT
         );
 
-        $response = [
-
-        ];
+        $response[0]['Content']['Body'] = 'Happy Birthday, dear John!';
+        $response[0]['Content']['Headers']['Subject'][0] = 'Happy Birthday!';
+        $response[0]['Content']['Headers']['To'][0] = 'john.doe@foobar.com';
         $messages = $this->messagesSent($response);
         $this->assertCount(1, $messages, 'message not sent?');
 
