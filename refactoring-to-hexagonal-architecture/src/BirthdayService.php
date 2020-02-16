@@ -12,13 +12,12 @@ use Swift_SmtpTransport;
 
 class BirthdayService
 {
-    protected function sendGreetings(
+    public function sendGreetings(
         string $fileName,
         OurDate $ourDate,
         string $smtpHost,
         int $smtpPort
-    ): void
-    {
+    ): void {
         $fileHandler = fopen($fileName, 'rb');
         fgetcsv($fileHandler);
         while ($employeeData = fgetcsv($fileHandler, null)) {
@@ -40,17 +39,21 @@ class BirthdayService
         string $subject,
         string $body,
         string $recipient
-    ): void
-    {
+    ): void {
         $mailer = new Swift_Mailer(
             new Swift_SmtpTransport($smtpHost, $smtpPort)
         );
         $msg = new Swift_Message($subject);
-        $msg
-            ->setFrom($sender)
+        $msg->setFrom($sender)
             ->setTo([$recipient])
-            ->setBody($body)
-        ;
+            ->setBody($body);
+
+
+        $this->send($msg, $mailer);
+    }
+
+    protected function send(Swift_Message $msg, Swift_Mailer $mailer)
+    {
         $mailer->send($msg);
     }
 

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use App\BirthdayService;
 use App\OurDate;
 use PHPUnit\Framework\TestCase;
@@ -11,28 +10,13 @@ class AcceptanceTest extends TestCase
 {
     private const SMTP_HOST = '127.0.0.1';
     private const SMTP_PORT = 25;
+    private BirthdayService $service;
 
-    private $service;
-
-    protected function setUpt(): void
+    protected function setUp(): void
     {
         $this->service = new class() extends BirthdayService {
-
-            protected function sendGreetings(string $fileName, OurDate $ourDate, string $smtpHost, int $smtpPort): void
+            protected function send(Swift_Message $msg, Swift_Mailer $mailer): void
             {
-                parent::sendGreetings($fileName, $ourDate, $smtpHost, $smtpPort);
-            }
-
-            protected function sendMessage(
-                string $smtpHost,
-                int $smtpPort,
-                string $sender,
-                string $subject,
-                string $body,
-                string $recipient
-            ): void
-            {
-
             }
         };
     }
