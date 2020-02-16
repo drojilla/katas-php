@@ -16,11 +16,25 @@ class AcceptanceTest extends TestCase
 
     protected function setUpt(): void
     {
-        $this->service = $this->createMock(BirthdayService::class);
-        $this->service
-            ->expects($this->any())
-            ->method('sendMessage')
-            ->willReturn(null);
+        $this->service = new class() extends BirthdayService {
+
+            protected function sendGreetings(string $fileName, OurDate $ourDate, string $smtpHost, int $smtpPort): void
+            {
+                parent::sendGreetings($fileName, $ourDate, $smtpHost, $smtpPort);
+            }
+
+            protected function sendMessage(
+                string $smtpHost,
+                int $smtpPort,
+                string $sender,
+                string $subject,
+                string $body,
+                string $recipient
+            ): void
+            {
+
+            }
+        };
     }
 
     private function messagesSent(array $response): array

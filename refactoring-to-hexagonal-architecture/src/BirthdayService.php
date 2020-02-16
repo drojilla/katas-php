@@ -12,7 +12,7 @@ use Swift_SmtpTransport;
 
 class BirthdayService
 {
-    public function sendGreetings(
+    protected function sendGreetings(
         string $fileName,
         OurDate $ourDate,
         string $smtpHost,
@@ -33,7 +33,7 @@ class BirthdayService
         }
     }
 
-    private function sendMessage(
+    protected function sendMessage(
         string $smtpHost,
         int $smtpPort,
         string $sender,
