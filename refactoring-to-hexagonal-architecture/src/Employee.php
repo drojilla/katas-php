@@ -15,17 +15,16 @@ class Employee
     private string $firstName;
     private string $email;
 
-    public function __construct(string $firstName, string $lastName, string $email, DateTime $date = null)
+    public function __construct(string $firstName, string $lastName, string $email, OurDate $birthDate)
     {
         try {
             $this->firstName = $firstName;
             $this->lastName = $lastName;
-            $this->birthDate = new OurDate($date);
+            $this->birthDate = $birthDate;
             $this->email = $email;
         } catch (\Throwable $e) {
             throw new \ArgumentCountError('Invalids arguments');
         }
-
     }
 
     public function isBirthday(OurDate $today)

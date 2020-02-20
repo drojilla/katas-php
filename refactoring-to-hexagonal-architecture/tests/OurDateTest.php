@@ -38,12 +38,6 @@ class OurDateTest extends TestCase
         $this->assertFalse($base->equals($different));
     }
 
-    public function testExceptionInCreationObject()
-    {
-        $this->expectException(ArgumentCountError::class);
-        $invalidDate = new OurDate();
-    }
-
     private function createDate(string $yyyyMMdd): DateTime
     {
         return DateTime::createFromFormat('Y/m/d', $yyyyMMdd);

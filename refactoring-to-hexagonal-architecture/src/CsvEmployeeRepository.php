@@ -24,7 +24,7 @@ class CsvEmployeeRepository implements EmployeeRepository
         while ($employeeData = fgetcsv($fileHandler, null, ',')) {
             $employeeData = array_map('trim', $employeeData);
 
-            $employee = new Employee($employeeData[1], $employeeData[0], $employeeData[3], $this->createDate($employeeData[2]));
+            $employee = new Employee($employeeData[1], $employeeData[0], $employeeData[3], $this->createOurDate($employeeData[2]));
             $employees[] = $employee;
         }
 
@@ -35,8 +35,8 @@ class CsvEmployeeRepository implements EmployeeRepository
         return $employees;
     }
 
-    private function createDate(string $yyyyMMdd): DateTime
+    private function createOurDate(string $yyyyMMdd): OurDate
     {
-        return DateTime::createFromFormat('Y/m/d', $yyyyMMdd);
+        return new OurDate(DateTime::createFromFormat('Y/m/d', $yyyyMMdd));
     }
 }

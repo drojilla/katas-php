@@ -10,16 +10,11 @@ use DateTime;
 
 class OurDate
 {
-
     private DateTime $date;
 
     public function __construct(DateTime $date)
     {
-        try {
-            $this->date = $date;
-        } catch (\Throwable $e) {
-            throw new \InvalidArgumentException('ParseException');
-        }
+        $this->date = $date;
     }
 
     public function getDay(): int
