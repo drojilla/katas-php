@@ -13,13 +13,10 @@ class OurDate
 
     private DateTime $date;
 
-    public function __construct(string $yyyyMMdd = null, DateTime $date = null)
+    public function __construct(DateTime $date)
     {
         try {
-            $this->date = DateTime::createFromFormat('Y/m/d', $yyyyMMdd);
-            if (null!== $date) {
-                $this->date = $date;
-            }
+            $this->date = $date;
         } catch (\Throwable $e) {
             throw new \InvalidArgumentException('ParseException');
         }
