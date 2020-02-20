@@ -12,23 +12,32 @@ use Swift_SmtpTransport;
 
 class BirthdayService
 {
+    const SENDER_EMAIL = 'sender@here.com';
+    const EMAIL_BODY_TEMPLATE = 'Happy Birthday, dear %s!';
+    const EMAIL_SUBJECT = 'Happy Birthday!';
+    private EmployeeRepository $employeeRepository;
+
+    public function __construct(EmployeeRepository $employeeRepository)
+    {
+        $this->employeeRepository = $employeeRepository;
+    }
+
     public function sendGreetings(
-        string $fileName,
-        OurDate $ourDate,
+        OurDate $date,
         string $smtpHost,
         int $smtpPort
     ): void {
-        $fileHandler = fopen($fileName, 'rb');
-        fgetcsv($fileHandler);
-        while ($employeeData = fgetcsv($fileHandler, null)) {
-            $employeeData = array_map('trim', $employeeData);
-            $employee = new Employee($employeeData[1], $employeeData[0], $employeeData[2], $employeeData[3]);
-            if ($employee->isBirthday($ourDate)) {
-                $recipient = $employee->getEmail();
-                $body = sprintf('Happy Birthday, dear %s!', $employee->getFirstName());
-                $subject = 'Happy Birthday!';
-                $this->sendMessage($smtpHost, $smtpPort, 'sender@here.com', $subject, $body, $recipient);
-            }
+        $employees = $this->employeeRepository->findByBirthday($date);
+
+        $this->sendEmails($smtpHost, $smtpPort, $employees);
+    }
+
+    private function sendEmails($smtpHost, $smtpPort, array $employees): void
+    {
+        foreach ($employees as $employee) {
+            $recipient = $employee->getEmail();
+            $body = sprintf(self::EMAIL_BODY_TEMPLATE, $employee->getFirstName());
+            $this->sendMessage($smtpHost, $smtpPort, self::SENDER_EMAIL, self::EMAIL_SUBJECT, $body, $recipient);
         }
     }
 
