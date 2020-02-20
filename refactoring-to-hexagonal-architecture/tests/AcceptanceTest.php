@@ -15,15 +15,23 @@ class AcceptanceTest extends TestCase
     protected function setUp(): void
     {
         $this->service = new class() extends BirthdayService {
+            private array $messageSent = [];
+
             protected function send(Swift_Message $msg, Swift_Mailer $mailer): void
             {
+                $this->messageSent[] = $msg;
+            }
+
+            public function count(): int
+            {
+                return count($this->messageSent);
+            }
+
+            public function get(int $index): Swift_Message
+            {
+                return $this->messageSent[$index];
             }
         };
-    }
-
-    private function messagesSent(array $response): array
-    {
-        return $response;
     }
 
     public function testWillSendGreetings_whenItsSomebodysBirthday(): void
@@ -35,17 +43,12 @@ class AcceptanceTest extends TestCase
             static::SMTP_PORT
         );
 
-        $response[0]['Content']['Body'] = 'Happy Birthday, dear John!';
-        $response[0]['Content']['Headers']['Subject'][0] = 'Happy Birthday!';
-        $response[0]['Content']['Headers']['To'][0] = 'john.doe@foobar.com';
-        $messages = $this->messagesSent($response);
-        $this->assertCount(1, $messages, 'message not sent?');
-
-        $message = $messages[0];
-        $this->assertEquals('Happy Birthday, dear John!', $message['Content']['Body']);
-        $this->assertEquals('Happy Birthday!', $message['Content']['Headers']['Subject'][0]);
-        $this->assertCount(1, $message['Content']['Headers']['To']);
-        $this->assertEquals('john.doe@foobar.com', $message['Content']['Headers']['To'][0]);
+        $this->assertEquals(1, $this->service->count(), 'message not sent?');
+        /** @var Swift_Message $message */
+        $message =  $this->service->get(0);
+        $this->assertEquals('Happy Birthday, dear John!', $message->getBody());
+        $this->assertEquals('Happy Birthday!', $message->getSubject());
+        $this->assertEquals('john.doe@foobar.com', key($message->getTo()));
     }
 
     public function testWillNotSendEmailsWhenNobodysBirthday(): void
@@ -57,6 +60,6 @@ class AcceptanceTest extends TestCase
             static::SMTP_PORT
         );
 
-        $this->assertCount(0, $this->messagesSent([]), 'what? messages?');
+        $this->assertEquals(0, $this->service->count(), 'what? messages?');
     }
 }
