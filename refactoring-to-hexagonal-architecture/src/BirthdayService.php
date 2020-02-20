@@ -16,17 +16,20 @@ class BirthdayService
     const EMAIL_BODY_TEMPLATE = 'Happy Birthday, dear %s!';
     const EMAIL_SUBJECT = 'Happy Birthday!';
     private EmployeeRepository $employeeRepository;
+    private ?Sender $sender;
 
-    public function __construct(EmployeeRepository $employeeRepository)
+    public function __construct(EmployeeRepository $employeeRepository, Sender $sender = null)
     {
         $this->employeeRepository = $employeeRepository;
+        $this->sender = $sender;
     }
 
     public function sendGreetings(
         OurDate $date,
         string $smtpHost,
         int $smtpPort
-    ): void {
+    ): void
+    {
         $employees = $this->employeeRepository->findByBirthday($date);
 
         $this->sendEmails($smtpHost, $smtpPort, $employees);
@@ -48,7 +51,8 @@ class BirthdayService
         string $subject,
         string $body,
         string $recipient
-    ): void {
+    ): void
+    {
         $mailer = new Swift_Mailer(
             new Swift_SmtpTransport($smtpHost, $smtpPort)
         );
@@ -57,13 +61,18 @@ class BirthdayService
             ->setTo([$recipient])
             ->setBody($body);
 
+        $message = new Mail();
 
-        $this->send($msg, $mailer);
+        $this->send($msg, $mailer, $message);
     }
 
-    protected function send(Swift_Message $msg, Swift_Mailer $mailer)
+    protected function send(
+        Swift_Message $msg,
+        Swift_Mailer $mailer,
+        Message $message)
     {
         $mailer->send($msg);
+        $this->sender->send($message);
     }
 
 }

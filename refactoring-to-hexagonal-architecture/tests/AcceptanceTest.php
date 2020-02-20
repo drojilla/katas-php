@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\BirthdayService;
 use App\OurDate;
+use App\Message;
 use App\CsvEmployeeRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +22,7 @@ class AcceptanceTest extends TestCase
         $this->service = new class($employeeRepository) extends BirthdayService {
             private array $messageSent = [];
 
-            protected function send(Swift_Message $msg, Swift_Mailer $mailer): void
+            protected function send(Swift_Message $msg, Swift_Mailer $mailer, Message $message): void
             {
                 $this->messageSent[] = $msg;
             }
