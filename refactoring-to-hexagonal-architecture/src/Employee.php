@@ -6,6 +6,8 @@ declare(strict_types=1);
 namespace App;
 
 
+use DateTime;
+
 class Employee
 {
     private OurDate $birthDate;
@@ -13,12 +15,12 @@ class Employee
     private string $firstName;
     private string $email;
 
-    public function __construct(string $firstName, string $lastName, string $birthDate, string $email)
+    public function __construct(string $firstName, string $lastName, string $birthDate, string $email, DateTime $date = null)
     {
         try {
             $this->firstName = $firstName;
             $this->lastName = $lastName;
-            $this->birthDate = new OurDate($birthDate);
+            $this->birthDate = new OurDate($birthDate, $date);
             $this->email = $email;
         } catch (\Throwable $e) {
             throw new \ArgumentCountError('Invalids arguments');

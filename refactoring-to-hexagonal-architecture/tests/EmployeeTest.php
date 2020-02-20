@@ -10,15 +10,14 @@ class EmployeeTest extends TestCase
 {
     public function testBirthday(){
         $employee = new Employee("foo", "bar", "1990/01/31", "a@b.c");
-        $this->assertFalse($employee->isBirthday(new OurDate("2008/01/30")), "not his birthday");
-        $this->assertTrue($employee->isBirthday(new OurDate("2008/01/31")), "his birthday");
+        $this->assertFalse($employee->isBirthday(new OurDate("2008/01/30", $this->createDate('2008/01/30'))), "not his birthday");
+        $this->assertTrue($employee->isBirthday(new OurDate("2008/01/31", $this->createDate('2008/01/31'))), "his birthday");
     }
 
     public function testExceptionInCreationObject()
     {
         $this->expectException(\ArgumentCountError::class);
         $invalidDate = new Employee("");
-        $anotherInvalidDate = new Employee();
     }
 
     public function testEquality(){
@@ -30,4 +29,9 @@ class EmployeeTest extends TestCase
         $this->assertFalse($base->equals($different));
     }
 
+
+    private function createDate(string $yyyyMMdd): DateTime
+    {
+        return DateTime::createFromFormat('Y/m/d', $yyyyMMdd);
+    }
 }
