@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class PrintingAccountStatementOnConsoleTest extends TestCase
 {
-    public function testPrintingStatementIncludingDepositAndWithDrawal()
+    public function testPrintingStatementIncludingDepositAndWithdrawal()
     {
         $this->assertTrue(false);
     }
