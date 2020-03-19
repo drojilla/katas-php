@@ -24,9 +24,11 @@ Refactoring to Hexagonal Architecture.
 ## [Text Converter](text-converter/)
 Doing TDD on legacy code.
 
-## [Outside-in TDD](outside-in-with-ohce-kata/)
+## [Outside-in TDD - with ohce kata](outside-in-with-ohce-kata/)
 Practice outside-in TDD using test doubles.
 
+## [Outside-in TDD - with bank account kata](outside-in-with-bank-kata/)
+Practice outside-in TDD to understand the outside-in TDD style.
 
 ## How to get started
 
