@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\text_converter\HtmlTextConverter;
+use App\TextConverter\HtmlTextConverter;
 use PHPUnit\Framework\TestCase;
 
 class HtmlTextConverterTest extends TestCase

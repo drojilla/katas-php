@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\text_converter;
+namespace App\TextConverter;
 
 class HtmlTextConverter
 {
