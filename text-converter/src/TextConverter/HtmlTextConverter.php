@@ -24,10 +24,7 @@ class HtmlTextConverter
         $htmlFile = fopen($htmlFile, 'w');
         fwrite($htmlFile, '<body>');
         while ($line = fgets($textFile)) {
-            $line = trim($line);
-            $line = str_replace('&', '&amp;', $line);
-            $line = str_replace('<', '&lt;', $line);
-            $line = str_replace('>', '&gt;', $line);
+            $line = $this->escapeText($line);
 
             fwrite($htmlFile, $line);
             fwrite($htmlFile, '<br />');
@@ -35,5 +32,16 @@ class HtmlTextConverter
 
         fwrite($htmlFile, '</body>');
         fclose($textFile);
+    }
+
+    public static function escapeText(string $text): ?string
+    {
+        $text = trim($text);
+        $text = str_replace('&', '&amp;', $text);
+        $text = str_replace('<', '&lt;', $text);
+        $text = str_replace('>', '&gt;', $text);
+        $text = str_replace('\'', '&quot;', $text);
+        $text = str_replace('"', '&quot;', $text);
+        return $text;
     }
 }
