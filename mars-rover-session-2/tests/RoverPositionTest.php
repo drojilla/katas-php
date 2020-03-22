@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Rover;
 use PHPUnit\Framework\TestCase;
 
-class RoverPositionTests extends TestCase
+class RoverPositionTest extends TestCase
 {
     public function testFacingNorthMoveForward()
     {

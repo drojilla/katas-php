@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Rover;
 use PHPUnit\Framework\TestCase;
 
-class RoverReceivingCommandsListTests extends TestCase
+class RoverReceivingCommandsListTest extends TestCase
 {
     public function testNoCommands(): void
     {

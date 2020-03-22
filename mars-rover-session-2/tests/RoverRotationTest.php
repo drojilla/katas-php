@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Rover;
 use PHPUnit\Framework\TestCase;
 
-class RoverRotationTests extends TestCase
+class RoverRotationTest extends TestCase
 {
     public function testFacingNorthRotateLeft()
     {

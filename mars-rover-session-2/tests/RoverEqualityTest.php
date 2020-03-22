@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Rover;
 use PHPUnit\Framework\TestCase;
 
-class RoverEqualityTests extends TestCase
+class RoverEqualityTest extends TestCase
 {
     public function testEqualRovers(): void
     {
