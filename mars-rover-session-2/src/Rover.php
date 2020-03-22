@@ -36,7 +36,7 @@ class Rover
     {
         $commandsSequenceLenght = strlen($commandsSequence);
         for ($i = 0; $i < $commandsSequenceLenght; ++$i) {
-            $command = substr($commandsSequence, $i, $i + 1);
+            $command = substr($commandsSequence, $i, 1);
             if ($command === "l" || $command === "r") {
                 // Rotate Rover
                 if ($this->direction() === "N") {
