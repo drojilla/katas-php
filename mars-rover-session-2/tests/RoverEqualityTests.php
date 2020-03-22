@@ -12,7 +12,7 @@ class RoverEqualityTests extends TestCase
         $this->assertEquals(new Rover(1, 1, "N"), new Rover(1, 1, "N"));
     }
 
-    public function notEqualRovers(): void
+    public function testNotEqualRovers(): void
     {
         $this->assertFalse((new Rover(1, 1, "N"))->equals(new Rover(1, 1, "S")));
         $this->assertFalse((new Rover(1, 1, "N"))->equals(new Rover(1, 2, "N")));
