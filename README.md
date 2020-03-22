@@ -3,6 +3,22 @@
 ## [Empty skeleton](empty-skeleton/)
 An empty skeleton to start doing TDD.
 
+## [Mars Rover's kata](mars-rover-session-1/)
+Session 1: TDD Practice.
+Implementing Mars Rover's Movement
+
+## [Mars Rover's kata](mars-rover-session-2/)
+Session 2: Refactoring Practice.
+Refactoring a smelly Mars Rover's code
+
+## [Mars Rover's kata](mars-rover-session-3/)
+Session 3: Adding a new feature to an existing code base.
+Supporting ESA commands as well (1)
+
+## [Mars Rover's kata](mars-rover-session-4/)
+Session 4: Adding a new feature to an existing code base.
+Supporting ESA commands as well (2)
+
 ## [Fizz Buzz](fizz-buzz/)
 Good kata to start doing TDD.
 
