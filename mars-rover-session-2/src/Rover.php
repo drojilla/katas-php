@@ -94,8 +94,7 @@ class Rover
         if ($this->x() !== $rover->x()) {
             return false;
         }
-        return $this->direction() !== null
-            ? $this->direction() === $rover->direction()
-            : $rover->direction() === null;
+
+        return $this->direction() === $rover->direction();
     }
 }
