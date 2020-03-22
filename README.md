@@ -1,5 +1,8 @@
 # Katas
 
+## [Empty skeleton](empty-skeleton/)
+An empty skeleton to start doing TDD.
+
 ## [Fizz Buzz](fizz-buzz/)
 Good kata to start doing TDD.
 
