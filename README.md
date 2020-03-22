@@ -50,7 +50,7 @@ Repeats this operation for any kata you like to practice.
 Uses **make install** for install composer dependencies.
 
 ```
-git https://github.com/drojilla/katas-php.git
+git clone https://github.com/drojilla/katas-php.git
 cd katas-php/fizz-buzz/
 make install
 ```
