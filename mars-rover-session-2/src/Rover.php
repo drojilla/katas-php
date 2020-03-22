@@ -68,7 +68,7 @@ class Rover
                 // Displace Rover
                 $displacement1 = -1;
 
-                if ($this->direction() === "f") {
+                if ($command === "f") {
                     $displacement1 = 1;
                 }
                 $displacement = $displacement1;
